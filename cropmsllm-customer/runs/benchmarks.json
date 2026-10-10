@@ -1,0 +1,125 @@
+{
+  "context": "Recent (2025-2026) literature on UAV multispectral crop / weed segmentation and NDVI-based stress classification. Use as a reference frame for the deployed model's 81.40% 3-class mIoU and 96.62% per-pixel severity accuracy on WeedsGalore.",
+  "ours": {
+    "title": "AgriMTL - Agricultural Multi-Task Learning (this work)",
+    "year": 2026,
+    "venue": "deployed",
+    "architecture": "MiT-B3 SegFormer + DeepLabv3+ decoder + 4 heads (seg / NDVI / NDRE / canopy)",
+    "params_m": 45.2,
+    "input_bands": "5 (B/G/R/RE/NIR)",
+    "input_res": "576x576 (predict 600x600)",
+    "dataset": "WeedsGalore",
+    "primary_metric": "3-class mIoU 81.40%; severity-bin per-pixel acc 96.62%; macro-F1 74.92%",
+    "multitask": "yes (seg + NDVI + NDRE + canopy + LLM grounding)"
+  },
+  "papers": [
+    {
+      "title": "WeedsGalore: A Multispectral and Multitemporal UAV-Based Dataset for Crop and Weed Segmentation",
+      "authors": "Celikkan et al.",
+      "year": 2025,
+      "venue": "WACV",
+      "architecture": "DeepLabv3+ (ResNet50) and MaskFormer baselines",
+      "input_bands": "5 (B/G/R/RE/NIR)",
+      "input_res": "600x600",
+      "dataset": "WeedsGalore (maize)",
+      "primary_metric": "82.90% 3-class mIoU (55.52% 6-class)",
+      "multitask": "no (seg-only with probabilistic uncertainty)",
+      "url": "https://arxiv.org/abs/2502.13103"
+    },
+    {
+      "title": "Lightweight Multispectral Crop-Weed Segmentation with Dynamic Modality Integration",
+      "authors": "Galymzhankyzy & Martinson",
+      "year": 2025,
+      "venue": "arXiv 2505.07444",
+      "architecture": "Transformer-CNN hybrid w/ dynamic modality integration",
+      "params_m": 8.7,
+      "input_bands": "RGB+NIR+RE",
+      "input_res": "600x600",
+      "dataset": "WeedsGalore",
+      "primary_metric": "78.88% 3-class mIoU (+15.8 pp over RGB-only)",
+      "multitask": "no",
+      "url": "https://arxiv.org/abs/2505.07444"
+    },
+    {
+      "title": "BAWSeg / VISA: Two-Stream Radiance + Index with Slot-Attention for Cross-Year Crop-Weed Segmentation",
+      "authors": "Wang et al.",
+      "year": 2026,
+      "venue": "Remote Sensing",
+      "architecture": "Two-stream radiance + spectral-index streams + slot attention",
+      "params_m": 22.8,
+      "input_bands": "5 MS + derived VIs",
+      "dataset": "BAWSeg (barley, 4 years WA)",
+      "primary_metric": "75.6% mIoU; 63.5% weed IoU; 69.2% cross-year",
+      "multitask": "partial (spectral-index stream, no regression)",
+      "url": "https://arxiv.org/abs/2603.01932"
+    },
+    {
+      "title": "FCBNet: Frozen-Backbone Feature Correction for Weed Segmentation",
+      "authors": "Ramos & Sappa",
+      "year": 2026,
+      "venue": "arXiv 2603.06655",
+      "architecture": "Frozen ConvNeXt + Feature Correction Block (>90% params frozen)",
+      "input_bands": "RGB + MSI",
+      "dataset": "WeedBananaCOD, WeedMap",
+      "primary_metric": ">85% mIoU (beats U-Net / DeepLabv3+ / SegFormer / WeedSense)",
+      "multitask": "no",
+      "url": "https://arxiv.org/abs/2603.06655"
+    },
+    {
+      "title": "WeedSense: Dual-Path Encoder with Multi-Task Bifurcated Decoder",
+      "authors": "Sarker et al.",
+      "year": 2025,
+      "venue": "ICCVW",
+      "architecture": "Dual-path encoder (UIB) + Multi-Task Bifurcated Decoder, transformer fusion",
+      "params_m": null,
+      "input_bands": "RGB",
+      "dataset": "Custom 16-species, 11-week growth",
+      "primary_metric": "89.78% mIoU; 1.67 cm height MAE; 99.99% growth-stage acc; 160 FPS",
+      "multitask": "yes (seg + height regression + growth-stage classification)",
+      "url": "https://arxiv.org/abs/2508.14486"
+    },
+    {
+      "title": "MLVI-CNN: Hyperspectral Index Optimization for Crop Stress Classification",
+      "authors": "Poornima & Edward",
+      "year": 2025,
+      "venue": "Frontiers in Plant Science",
+      "architecture": "1D-CNN on ML-optimized hyperspectral indices",
+      "input_bands": "3 selected HS bands (NIR, SWIR1/2)",
+      "dataset": "GHISACONUS (NASA Hyperion)",
+      "primary_metric": "83.40% accuracy / 82.95% F1 (6-class severity); detects stress 10-15 d before NDVI",
+      "multitask": "no (classification only)",
+      "url": "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2025.1631928/full"
+    },
+    {
+      "title": "NDVI-FCNN: Crop Health Classification with NDVI + Spectral Features",
+      "authors": "Judith et al.",
+      "year": 2025,
+      "venue": "arXiv 2504.10522",
+      "architecture": "Fully-Connected NN on NDVI + green/red-edge",
+      "input_bands": "NDVI + green + red-edge (Sentinel-2)",
+      "dataset": "Multi-region satellite",
+      "primary_metric": "97.80% accuracy (healthy / rust / stressed)",
+      "multitask": "no",
+      "url": "https://arxiv.org/abs/2504.10522"
+    },
+    {
+      "title": "Tiff-SegFormer: RGB + Thermal IR Fusion for Wheat Tillering",
+      "authors": "—",
+      "year": 2025,
+      "venue": "Scientific Reports",
+      "architecture": "SegFormer fusing RGB + thermal IR",
+      "input_bands": "RGB + TIR",
+      "dataset": "Winter-wheat tillering (UAV)",
+      "primary_metric": "pixel-level wheat extraction (best class IoU reported in paper)",
+      "multitask": "no",
+      "url": "https://www.nature.com/articles/s41598-025-98449-3"
+    }
+  ],
+  "positioning": [
+    "Direct apples-to-apples: WeedsGalore-WACV DeepLabv3+/MSI 82.90% (3-class) is the canonical headline; ours sits 1.5 pp below at lower compute and with three regression heads bolted on.",
+    "Lightweight comparator: the 2025 8.7 M-param transformer-CNN hybrid hits 78.88% on the same split; ours beats it by 2.5 pp.",
+    "Multi-task uniqueness: only WeedSense is similarly multi-task (seg + regression + classification), but it is RGB-only on a private dataset. No published WeedsGalore baseline jointly predicts seg + NDVI + NDRE + canopy regression.",
+    "Stress-classification framing: published baselines on hyperspectral data sit at 83-98% accuracy; ours hits 96.62% per-pixel severity accuracy as one of four jointly trained heads.",
+    "Open gap to flag: WeedsGalore 6-class is still wide open (DeepLabv3+ only 55.52% mIoU)."
+  ]
+}

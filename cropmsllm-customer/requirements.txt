@@ -1,0 +1,40 @@
+# CropMS-LLM ViT — Python deps (Python 3.10).
+# Install torch first per RUNBOOK.md (CPU vs CUDA wheel matters), then this file.
+
+# --- core DL ---
+torch==2.3.*
+torchvision
+timm
+segmentation-models-pytorch
+albumentations
+opencv-python-headless
+
+# --- transformers / tokenizer (for any HF model component) ---
+transformers==4.44.*
+huggingface-hub
+sentencepiece
+
+# --- numerics / image IO ---
+numpy<2
+scipy
+scikit-image
+Pillow
+tifffile
+rasterio
+
+# --- API ---
+fastapi
+uvicorn[standard]
+pydantic>=2
+
+# --- LLM bridge (Ollama via HTTP) ---
+requests
+
+# --- config / misc ---
+PyYAML
+python-dotenv
+tqdm
+
+# --- notebook ---
+jupyterlab
+matplotlib
